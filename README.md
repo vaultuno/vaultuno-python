@@ -60,7 +60,7 @@ We just changed the weight of a portfolio to 50.
 Each portfolio has a default position with the reserved symbol `$$$`. This position 
 represents the unallocated portion of the portfolio, that is, cash. 
 
-We can use the `update_positions` method to add assets to the portfolio: 
+We can use the `update_positions` method to add assets to a portfolio: 
 
 ```py
 positions = vu.update_positions(portfolio.id, {
