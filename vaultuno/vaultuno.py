@@ -252,7 +252,7 @@ class VUAPI(object):
         return {
             "assets": self._response_wrapper(resp["assets"], Performance),
             "benchmark": self._response_wrapper(resp["benchmark"], Performance) if resp["benchmark"] else None
-        }
+        } if "assets" in resp and "benchmark" in resp else {}
 
     def get_broker_account(self, account_id: str) -> BrokerAccount:
         resp = self._get("/accounts/{}".format(account_id))
@@ -329,7 +329,7 @@ class VUAPI(object):
         return {
             "assets": self._response_wrapper(resp["assets"], Performance),
             "benchmark": self._response_wrapper(resp["benchmark"], Performance) if resp["benchmark"] else None
-        }
+        } if "assets" in resp and "benchmark" in resp else {}
 
     # ----------------------------------------- Positions ---------------------------------------
 
