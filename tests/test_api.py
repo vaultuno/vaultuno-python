@@ -98,6 +98,9 @@ class VUTest(unittest.TestCase):
             elif position.symbol == "$$$":
                 self.assertEqual(position.weight, 60.0)
 
+        portfolio_performance = vu.analyze_portfolio(portfolio.id)
+        account_performance = vu.analyze_broker_account(broker_account.id)
+
         vu.delete_portfolio(portfolio.id)
 
         portfolios = vu.list_portfolios(broker_account.id)
