@@ -84,7 +84,7 @@ start = end - timedelta(days=180)
 portfolio_performance = vu.simulate_portfolio(portfolio.id, start, end)
 ```
 
-To backtest the portfolio of all investment portfolios in a broker account, use the 
+To backtest a broker account and all its portfolios, use the 
 `simulate_broker_account` method: 
 
 ```py
