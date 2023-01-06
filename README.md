@@ -46,7 +46,7 @@ portfolio = vu.create_portfolio(broker_account.id, "Stocks", "Used to test a por
 
 Each portfolio has a weight, a number in the range of [0, 100]. A new portfolio is 
 created with the weight of 0, which is enough for backtesting. To allocate funds to a portfolio, 
-change its weight to number greater than 0. The sum of weights of all portfolios in 
+change its weight to a number greater than 0. The sum of weights of all portfolios in 
 an account cannot be greater than 100.
 
 To update the weight of a portfolio, do the following:
