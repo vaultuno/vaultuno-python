@@ -16,7 +16,7 @@ several portfolios. You can register any number of broker accounts.
 
 You only need to register an account once. The registration record persists until deleted.
 
-Here is how one could register an (Alpaca)[https://alpaca.markets] paper trading account: 
+Here is how one could register an [Alpaca](https://alpaca.markets) paper trading account: 
 
 ```py
 from vaultuno import VUAPI, ProviderType
