@@ -22,7 +22,8 @@ from .entity import (
     Portfolio,
     Position,
     Performance,
-    RebalancingFrequency
+    RebalancingFrequency,
+    ReportingPeriod
 )
 
 logger = logging.getLogger(__name__)
@@ -240,6 +241,19 @@ class VUAPI(object):
             "benchmark": self._response_wrapper(resp["benchmark"], Performance) if resp["benchmark"] else None
         }
 
+    def analyze_broker_account(self, account_id: str,
+                               reporting_period: ReportingPeriod = ReportingPeriod.M1,
+                               benchmark: str = 'SPY') -> Dict[str, Performance]:
+        data = {
+            "reportingPeriod": reporting_period,
+            "benchmarkSymbol": benchmark
+        }
+        resp = self._post("/accounts/{}/report_performance".format(account_id), data)
+        return {
+            "assets": self._response_wrapper(resp["assets"], Performance),
+            "benchmark": self._response_wrapper(resp["benchmark"], Performance) if resp["benchmark"] else None
+        }
+
     def get_broker_account(self, account_id: str) -> BrokerAccount:
         resp = self._get("/accounts/{}".format(account_id))
         return self._response_wrapper(resp, BrokerAccount)
@@ -281,6 +295,10 @@ class VUAPI(object):
         resp = self._put("/portfolios/{}".format(portfolio_id), data)
         return self._response_wrapper(resp, Portfolio)
 
+    def liquidate_portfolio(self, account_id: str, portfolio_id: str) -> None:
+        self._post("/portfolios/{}/liquidate".format(portfolio_id))
+        return self._wait_for_account(account_id)
+
     def delete_portfolio(self, portfolio_id: str) -> None:
         self._delete("/portfolios/{}".format(portfolio_id))
 
@@ -295,6 +313,19 @@ class VUAPI(object):
             "benchmarkSymbol": benchmark
         }
         resp = self._post("/portfolios/{}/simulate".format(portfolio_id), data)
+        return {
+            "assets": self._response_wrapper(resp["assets"], Performance),
+            "benchmark": self._response_wrapper(resp["benchmark"], Performance) if resp["benchmark"] else None
+        }
+
+    def analyze_portfolio(self, portfolio_id: str,
+                          reporting_period: ReportingPeriod = ReportingPeriod.M1,
+                          benchmark: str = 'SPY') -> Dict[str, Performance]:
+        data = {
+            "reportingPeriod": reporting_period,
+            "benchmarkSymbol": benchmark
+        }
+        resp = self._post("/portfolios/{}/report_performance".format(portfolio_id), data)
         return {
             "assets": self._response_wrapper(resp["assets"], Performance),
             "benchmark": self._response_wrapper(resp["benchmark"], Performance) if resp["benchmark"] else None

@@ -16,7 +16,7 @@ class URL(str):
 
 def get_base_url() -> URL:
     return URL(os.environ.get(
-        'VU_API_BASE_URL', 'http://localhost:8080').rstrip('/'))
+        'VU_API_BASE_URL', 'https://api.vaultuno.com').rstrip('/'))
 
 
 def get_api_version(api_version: str) -> str:

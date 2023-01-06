@@ -45,6 +45,13 @@ class RebalanceState(str, Enum):
     CANCELING = "CANCELING"
     READY = "READY"
 
+class ReportingPeriod(str, Enum):
+    D1 = "D1"
+    D5 = "D5"
+    M1 = "M1"
+    M6 = "M6"
+    Y1 = "Y1"
+    Y5 = "Y5"
 
 class Profile(Entity):
     """
