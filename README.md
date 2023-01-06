@@ -94,8 +94,8 @@ account_performance = vu.simulate_broker_account(broker_account.id, start, end)
 # Rebalancing portfolios 
 
 Use the `rebalance_broker_account` method to rebalance all portolios in a broker account. 
-The method chooses an optimal path to bring asset positions in a portfolio and portfolio 
-positions in an account into accordance with their target weights: 
+The method chooses an optimal path to bring asset and portfolio 
+positions into accordance with their target weights: 
 
 ```py
 broker_account = vu.rebalance_broker_account(broker_account.id)
